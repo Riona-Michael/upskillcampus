@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortened URL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .shortened-url {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .original-url {
+            font-size: 1rem;
+            color: #888;
+        }
+        .copy-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shortened URL</h1>
+        <div class="shortened-url">
+            Shortened URL: <a href="{{ short_url }}">{{ short_url }}</a>
+        </div>
+        <div class="original-url">
+            Original URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </div>
+        <button class="copy-button" onclick="copyToClipboard('{{ short_url }}')">Copy to Clipboard</button>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('URL copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
